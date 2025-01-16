@@ -12,8 +12,9 @@ let rooms = strictprompt("number of rooms needed");
 // DISPLAY OUTPUT
 helloDiv.innerHTML = `Welcome, ${name}. Nice to see you again.`;
 
-const total = parseInt(amount * (taxRate / 100) + amount * rooms);
-// console.log(total);
+const total = parseFloat(
+  amount * rooms + (amount * rooms * taxRate) / 100
+).toFixed(2); // I had some more brackets in here but formatter threw them out
 
 const table = document.createElement("table"); // create results table
 table.classList.add(
@@ -37,7 +38,7 @@ Here are your results:
 <tbody>
 <tr>
 <th>Amount:</th>
-<td>$${amount}</td>
+<td>$${parseFloat(amount).toFixed(2)}</td>
 </tr>
 <tr>
 <th>Tax Rate:</th>
@@ -54,10 +55,12 @@ Here are your results:
 </tbody>
 `;
 
-// TODO: Allow user to cancel prompt
+// if val user enter is not a number, call the fn again
+// if user enters a number, return it
+// TODO: let user cancel the prompt
 function strictprompt(str) {
   val = parseInt(prompt(`Enter ${str}: `));
-  // console.log(val);
+
   if (isNaN(val)) {
     alert("Please enter a number");
     // console.log(`Calling strictprompt(${str})`);

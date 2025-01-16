@@ -85,41 +85,41 @@
     <!-- Block content -->
     <div id="block" class="container">
       <div id="message"></div>
-      <form action="" method="POST">
+      <div class="form-group">
+        <label for="numOne">Enter a number: </label>
+        <input
+          type="number"
+          name="numOne"
+          id="numOne"
+          class="form-control"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="numTwo">Enter another number: </label>
+        <input
+          type="number"
+          name="numTwo"
+          id="numTwo"
+          class="form-control"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="numThree">Enter another number: </label>
+        <input
+          type="number"
+          name="numThree"
+          id="numThree"
+          class="form-control"
+          required
+        />
         <div class="form-group">
-          <label for="numOne">Enter a number: </label>
-          <input
-            type="number"
-            name="numOne"
-            id="numOne"
-            class="form-control"
-            required
-          />
+          <button id="special-btn" type="submit" class="btn btn-secondary">
+            Submit
+          </button>
         </div>
-        <div class="form-group">
-          <label for="numTwo">Enter another number: </label>
-          <input
-            type="number"
-            name="numTwo"
-            id="numTwo"
-            class="form-control"
-            required
-          />
-        </div>
-        <div class="form-group">
-          <label for="numThree">Enter another number: </label>
-          <input
-            type="number"
-            name="numThree"
-            id="numThree"
-            class="form-control"
-            required
-          />
-          <div class="form-group">
-            <button type="submit" class="btn btn-secondary">Submit</button>
-          </div>
-        </div>
-      </form>
+      </div>
     </div>
 
     <!-- Footer -->
