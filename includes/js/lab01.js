@@ -57,12 +57,12 @@ Here are your results:
 // TODO: Allow user to cancel prompt
 function strictprompt(str) {
   val = parseInt(prompt(`Enter ${str}: `));
-  console.log(val);
+  // console.log(val);
   if (isNaN(val)) {
     alert("Please enter a number");
-    console.log(`Calling strictprompt(${str})`);
+    // console.log(`Calling strictprompt(${str})`);
     strictprompt(str);
   }
-  console.log(`Return: val=${val} type=${typeof val}`);
+  // console.log(`Return: val=${val} type=${typeof val}`);
   return val;
 }

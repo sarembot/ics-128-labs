@@ -32,11 +32,13 @@
 
     <title>ICS128 Labs</title>
   </head>
-  <body>
+  <body id="body">
     <!-- Navbar -->
     <nav id="nav" class="navbar fixed-top navbar-expand-sm">
       <div class="container-fluid">
-        <a class="navbar-brand" id="titleLink" href="#">Hotel Saremba</a>
+        <a class="navbar-brand" id="titleLink" href="index.html"
+          >Hotel Saremba</a
+        >
         <button
           class="navbar-toggler"
           type="button"
@@ -81,12 +83,45 @@
     </nav>
 
     <!-- Block content -->
-    <div
-      id="block"
-      class="container justify-content-center align-items-center mt-5"
-    >
+    <div id="block" class="container">
       <div id="message"></div>
+      <form action="" method="POST">
+        <div class="form-group">
+          <label for="numOne">Enter a number: </label>
+          <input
+            type="number"
+            name="numOne"
+            id="numOne"
+            class="form-control"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="numTwo">Enter another number: </label>
+          <input
+            type="number"
+            name="numTwo"
+            id="numTwo"
+            class="form-control"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="numThree">Enter another number: </label>
+          <input
+            type="number"
+            name="numThree"
+            id="numThree"
+            class="form-control"
+            required
+          />
+          <div class="form-group">
+            <button type="submit" class="btn btn-secondary">Submit</button>
+          </div>
+        </div>
+      </form>
     </div>
+
     <!-- Footer -->
     <footer
       id="footer"
