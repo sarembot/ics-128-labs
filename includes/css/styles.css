@@ -1,0 +1,37 @@
+* {
+  /* outline: 1px dashed green; */
+  font-family: "Montserrat", serif;
+}
+
+:root {
+  --main-color: #fef3e2;
+  --secondary-color: #bec6a0;
+  --tertiary-color: #708871;
+  --quaternary-color: #4e5360;
+  --text-color: #f5efe7;
+}
+
+#body {
+  min-height: 100vh;
+  background-color: #ddd;
+}
+
+#nav {
+  background-color: var(--tertiary-color);
+}
+
+#nav ul li a {
+  color: var(--main-color);
+}
+
+#footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  color: var(--quaternary-color);
+  background-color: var(--secondary-color);
+  padding: 0.5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
