@@ -15,10 +15,14 @@ document.getElementById("special-btn").addEventListener("click", () => {
   numThree = parseInt(document.getElementById("numThree").value);
   const nums = [numOne, numTwo, numThree];
 
+  // acc == running total (current sum), val == value of current index, 0 == initial value
+  const mean = (nums.reduce((acc, val) => acc + val, 0) / nums.length).toFixed(
+    2
+  );
+
   const max = Math.max(nums);
   const min = Math.min(nums);
 
-  let mean = numOne + numTwo + numThree / 3;
   let median;
   console.log(`Max: ${max} Min: ${min}`);
   console.log(`Nums: ${numOne}, ${numTwo}, ${numThree}`);
