@@ -115,10 +115,32 @@
           required
         />
         <div class="form-group">
-          <button id="special-btn" type="submit" class="btn btn-secondary">
+          <button id="pricesBtn" type="submit" class="btn btn-secondary">
             Submit
           </button>
         </div>
+      </div>
+      <div class="row">
+        <div class="container col-6" id="pricesDiv">
+          <h3 class="prices-title"></h3>
+          <ul class="prices-list list-group"></ul>
+        </div>
+        <div class="container col-6" id="occupancy">
+          <label for="occupancyRate">Display How Full the Hotel is:</label>
+          <input type="number" id="occupancyRate" placeholder="50" />
+          <div id="occupancyDisplay"></div>
+          <button id="occupancyBtn" type="submit" class="btn btn-secondary">
+            Calculate
+          </button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6 form-group" id="iterationDiv">
+          <label for="iteration">Iteration</label>
+          <input type="text" id="iteration" />
+          <button type="submit" class="btn btn-secondary">Iterate!</button>
+        </div>
+        <div class="col-6"></div>
       </div>
     </div>
 
