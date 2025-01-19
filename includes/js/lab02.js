@@ -1,6 +1,7 @@
 // ICS128 Lab02 - Mitchell Saremba
 const occupancyBtn = document.getElementById("occupancyBtn");
 const pricesBtn = document.getElementById("pricesBtn");
+const iterationDiv = document.getElementById("iterationDiv");
 
 const messageDiv = document.getElementById("message");
 const pricesDiv = document.getElementById("pricesDiv");
@@ -98,5 +99,25 @@ occupancyBtn.addEventListener("click", () => {
     rate.style.color = "orange";
   } else {
     rate.style.color = "red";
+  }
+});
+
+// Iteration
+iterationDiv.addEventListener("click", () => {
+  const val = document.getElementById("iteration").value;
+  const div = document.getElementById("iterationDisplay");
+
+  function createIteration(i) {
+    let p = document.createElement("p");
+    p.innerText = val.repeat(i);
+    div.appendChild(p);
+  }
+
+  for (i = 1; i <= 5; i++) {
+    createIteration(i);
+  }
+
+  for (i = 5; i > 0; i--) {
+    createIteration(i);
   }
 });
