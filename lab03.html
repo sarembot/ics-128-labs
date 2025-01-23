@@ -83,7 +83,61 @@
     </nav>
 
     <!-- Block content -->
-    <div id="block" class="container"></div>
+    <div id="block" class="container">
+      <div class="row mb-4">
+        <!-- Iteration -->
+        <div class="col-sm-6 mb-4">
+          <div class="card h-100 bg-light border-dark">
+            <div class="card-body">
+              <div
+                class="form-group d-flex flex-column justify-content-center"
+                id="iterationDiv"
+              >
+                <h4 class="text-center">Counters</h4>
+                <label for="iteration">Find Spaces in a Name</label>
+                <input type="text" class="form-control" id="spaces" />
+                <div id="spacesDisplay"></div>
+                <label for="iteration">Find Letters in a Name</label>
+                <input type="text" class="form-control" id="letters" />
+                <div id="lettersDisplay"></div>
+                <button
+                  type="submit"
+                  class="btn btn-danger border-dark rounded fw-bold mt-2 mx-4"
+                  id="countersBtn"
+                >
+                  Submit
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Fastest -->
+        <div class="col-sm-6 mb-4">
+          <div class="card h-100 border-dark">
+            <div class="card-body">
+              <div
+                class="form-group d-flex flex-column justify-content-center"
+                id="fastestDiv"
+              >
+                <h4 class="text-center">Speeds</h4>
+                <label for="alexa">Alexa's Speed:</label>
+                <input type="text" id="alexa" class="form-control" />
+                <label for="siri">Siri's Speed:</label>
+                <input type="text" id="siri" class="form-control" />
+                <div id="fastestDisplay"></div>
+                <button
+                  type="submit"
+                  class="btn btn-success rounded fw-bold border-dark mt-2 mx-4"
+                  id="fastestBtn"
+                >
+                  Go!
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <!-- Footer -->
     <footer id="footer" class="">
       <span>Mitchell Saremba Copyright 2025.</span>
