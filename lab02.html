@@ -84,72 +84,131 @@
 
     <!-- Block content -->
     <div id="block" class="container">
-      <div id="message"></div>
-      <div class="form-group">
-        <label for="numOne">Enter a number: </label>
-        <input
-          type="number"
-          name="numOne"
-          id="numOne"
-          class="form-control"
-          required
-        />
-      </div>
-      <div class="form-group">
-        <label for="numTwo">Enter another number: </label>
-        <input
-          type="number"
-          name="numTwo"
-          id="numTwo"
-          class="form-control"
-          required
-        />
-      </div>
-      <div class="form-group">
-        <label for="numThree">Enter another number: </label>
-        <input
-          type="number"
-          name="numThree"
-          id="numThree"
-          class="form-control"
-          required
-        />
-        <div class="form-group">
-          <button id="pricesBtn" type="submit" class="btn btn-secondary">
-            Submit
-          </button>
+      <div class="row mb-4">
+        <!-- Room Prices -->
+        <div class="col-sm-6 mb-4">
+          <div class="card h-100">
+            <div class="card-body">
+              <h4 class="text-center">Room Prices</h4>
+              <div
+                class="form-group d-flex flex-column justify-content-center align-items-center"
+              >
+                <label for="numOne">Enter a number: </label>
+                <input
+                  type="number"
+                  name="numOne"
+                  id="numOne"
+                  class="form-control"
+                  required
+                />
+                <label for="numTwo">Enter another number: </label>
+                <input
+                  type="number"
+                  name="numTwo"
+                  id="numTwo"
+                  class="form-control"
+                  required
+                />
+                <label for="numThree">Enter another number: </label>
+                <input
+                  type="number"
+                  name="numThree"
+                  id="numThree"
+                  class="form-control"
+                  required
+                />
+                <button
+                  id="pricesBtn"
+                  type="submit"
+                  class="btn btn-warning border-dark rounded fw-bold mt-2"
+                >
+                  Submit
+                </button>
+              </div>
+              <h3 class="prices-title"></h3>
+              <ul class="prices-list list-group"></ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Occupancy -->
+        <div class="col-sm-6 mb-4">
+          <div class="card h-100">
+            <div class="card-body" id="occupancy">
+              <div class="form-group d-flex flex-column justify-content-center">
+                <h4 class="text-center">Occupancy Rate</h4>
+                <label class="fs-5" for="occupancyRate"
+                  >Enter percentage:</label
+                >
+                <input type="number" id="occupancyRate" class="form-control" />
+                <div id="occupancyDisplay"></div>
+                <button
+                  id="occupancyBtn"
+                  type="submit"
+                  class="btn btn-primary border-dark rounded fw-bold mt-2 mx-4"
+                >
+                  Calculate
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="row">
-        <div class="container col-6" id="pricesDiv">
-          <h3 class="prices-title"></h3>
-          <ul class="prices-list list-group"></ul>
+
+      <!-- Iteration -->
+      <div class="row mb-4">
+        <div class="col-sm-6 mb-4">
+          <div class="card h-100 bg-light border-dark">
+            <div class="card-body">
+              <div
+                class="form-group d-flex flex-column justify-content-center"
+                id="iterationDiv"
+              >
+                <h4 class="text-center">Iteration</h4>
+                <label for="iteration">Iteration</label>
+                <input type="text" class="form-control" id="iteration" />
+                <div id="iterationDisplay"></div>
+                <button
+                  type="submit"
+                  class="btn btn-danger border-dark rounded fw-bold mt-2 mx-4"
+                  id="iterationBtn"
+                >
+                  Iterate!
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="container col-6" id="occupancy">
-          <label for="occupancyRate">Display How Full the Hotel is:</label>
-          <input type="number" id="occupancyRate" placeholder="50" />
-          <div id="occupancyDisplay"></div>
-          <button id="occupancyBtn" type="submit" class="btn btn-secondary">
-            Calculate
-          </button>
+        <!-- Fastest -->
+        <div class="col-sm-6 mb-4">
+          <div class="card h-100">
+            <div class="card-body">
+              <div
+                class="form-group d-flex flex-column justify-content-center"
+                id="fastestDiv"
+              >
+                <h4 class="text-center">Speeds</h4>
+                <label for="alexa">Alexa's Speed:</label>
+                <input type="text" id="alexa" class="form-control" />
+                <label for="siri">Siri's Speed:</label>
+                <input type="text" id="siri" class="form-control" />
+                <div id="fastestDisplay"></div>
+                <button
+                  type="submit"
+                  class="btn btn-success rounded fw-bold border-dark mt-2 mx-4"
+                  id="fastestBtn"
+                >
+                  Go!
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-6 form-group" id="iterationDiv">
-          <label for="iteration">Iteration</label>
-          <input type="text" id="iteration" />
-          <div id="iterationDisplay"></div>
-          <button type="submit" class="btn btn-secondary">Iterate!</button>
-        </div>
-        <div class="col-6"></div>
       </div>
     </div>
 
     <!-- Footer -->
-    <footer
-      id="footer"
-      class="fixed-bottom justify-content-center align-items-center"
-    >
+    <footer id="footer" class="">
       <span>Mitchell Saremba Copyright 2025.</span>
     </footer>
 
