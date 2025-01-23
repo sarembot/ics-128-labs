@@ -99,7 +99,7 @@ occupancyBtn.addEventListener("click", () => {
     } else if (val >= 65) {
       rate.style.color = "#efcc00";
     } else if (val >= 51) {
-      rate.style.color = "orange";
+      rate.style.color = "darkorange";
     } else {
       rate.style.color = "red";
     }
@@ -118,19 +118,17 @@ iterationBtn.addEventListener("click", () => {
     div.innerHTML = "";
 
     for (i = 1; i <= 5; i++) iterate(i);
-
     for (i = 4; i > 0; i--) iterate(i);
-
-    function iterate(i) {
-      let p = document.createElement("p");
-      p.innerText = val.repeat(i); // takes str returns str*i
-      p.classList.add("text-primary");
-      p.classList.add("p-0");
-      p.classList.add("m-0");
-      div.appendChild(p);
-    }
   } else {
     div.innerText = "";
+  }
+  function iterate(i) {
+    let p = document.createElement("p");
+    p.innerText = val.repeat(i); // takes str returns str*i
+    p.classList.add("text-primary");
+    p.classList.add("p-0");
+    p.classList.add("m-0");
+    div.appendChild(p);
   }
 });
 
@@ -143,54 +141,58 @@ fastestBtn.addEventListener("click", () => {
   const alexa = document.getElementById("alexa").value;
   const siri = document.getElementById("siri").value;
 
-  // Make some elements
-  const alexaP = document.createElement("p");
-  const siriP = document.createElement("p");
-  const winnerP = document.createElement("p");
+  if (!isNaN(alexa) && !isNaN(siri)) {
+    // Make some elements
+    const alexaP = document.createElement("p");
+    const siriP = document.createElement("p");
+    const winnerP = document.createElement("p");
 
-  const alexaSpan = document.createElement("span");
-  const siriSpan = document.createElement("span");
-  const winnerSpan = document.createElement("span");
+    const alexaSpan = document.createElement("span");
+    const siriSpan = document.createElement("span");
+    const winnerSpan = document.createElement("span");
 
-  // Add content to elements
-  alexaSpan.innerText = alexa;
-  siriSpan.innerText = siri;
+    // Add content to elements
+    alexaSpan.innerText = alexa;
+    siriSpan.innerText = siri;
 
-  // 'spreads' classes of element as args to the remove method
-  // resets styles
-  siriSpan.classList.remove(...siriSpan.classList);
-  alexaSpan.classList.remove(...alexaSpan.classList);
-  winnerSpan.classList.remove(...winnerSpan.classList);
+    // 'spreads' classes of element as args to the remove method
+    // resets styles
+    siriSpan.classList.remove(...siriSpan.classList);
+    alexaSpan.classList.remove(...alexaSpan.classList);
+    winnerSpan.classList.remove(...winnerSpan.classList);
 
-  winnerSpan.classList.add("text-danger");
+    winnerSpan.classList.add("text-danger");
 
-  // if siri is faster
-  if (parseInt(siri) > parseInt(alexa)) {
-    winnerSpan.textContent = "Siri";
-    siriSpan.classList.add("text-danger");
-    alexaSpan.classList.add("text-primary");
+    // if siri is faster
+    if (parseInt(siri) > parseInt(alexa)) {
+      winnerSpan.textContent = "Siri";
+      siriSpan.classList.add("text-danger");
+      alexaSpan.classList.add("text-primary");
 
-    // if alexa is faster
-  } else if (parseInt(alexa) > parseInt(siri)) {
-    winnerSpan.textContent = "Alexa";
-    alexaSpan.classList.add("text-danger");
-    siriSpan.classList.add("text-primary");
+      // if alexa is faster
+    } else if (parseInt(alexa) > parseInt(siri)) {
+      winnerSpan.textContent = "Alexa";
+      alexaSpan.classList.add("text-danger");
+      siriSpan.classList.add("text-primary");
+    }
+
+    // Add content to elements
+    siriP.innerText = "Siri's speed: ";
+    alexaP.innerText = "Alexa's speed: ";
+
+    siriP.appendChild(siriSpan);
+    alexaP.appendChild(alexaSpan);
+    winnerP.appendChild(winnerSpan);
+    winnerP.innerHTML += " is the winner.";
+
+    // Reset previous content
+    div.innerHTML = "";
+
+    // Add elements to DOM
+    div.appendChild(alexaP);
+    div.appendChild(siriP);
+    div.appendChild(winnerP);
+  } else {
+    div.innerText = `Please enter some numbers.`;
   }
-
-  // Add content to elements
-  siriP.innerText = "Siri's speed: ";
-  alexaP.innerText = "Alexa's speed: ";
-
-  siriP.appendChild(siriSpan);
-  alexaP.appendChild(alexaSpan);
-  winnerP.appendChild(winnerSpan);
-  winnerP.innerHTML += " is the winner.";
-
-  // Reset previous content
-  div.innerHTML = "";
-
-  // Add elements to DOM
-  div.appendChild(siriP);
-  div.appendChild(alexaP);
-  div.appendChild(winnerP);
 });
