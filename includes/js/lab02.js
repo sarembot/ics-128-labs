@@ -15,47 +15,51 @@ pricesBtn.addEventListener("click", () => {
     parseInt(document.getElementById("numThree").value),
   ];
 
-  // acc == running total (current sum), val == value of current index, 0 == initial value
-  const mean = (
-    prices.reduce((acc, val) => acc + val, 0) / prices.length
-  ).toFixed(2);
+  if (!isNaN(prices[0]) && !isNaN(prices[1]) && !isNaN(prices[2])) {
+    // acc == running total (current sum), val == value of current index, 0 == initial value
+    const mean = (
+      prices.reduce((acc, val) => acc + val, 0) / prices.length
+    ).toFixed(2);
 
-  // Function forces sort by num value
-  // Sort prices to calculate median
-  prices.sort((a, b) => a - b);
+    // Function forces sort by num value
+    // Sort prices to calculate median
+    prices.sort((a, b) => a - b);
 
-  const median = prices[Math.round(prices.length / 2) - 1];
+    const median = prices[Math.round(prices.length / 2) - 1];
 
-  // Just for fun
-  const pricesObj = {
-    Prices: prices,
-    Median: median,
-    Mean: mean,
-  };
+    // Just for fun
+    const pricesObj = {
+      Prices: prices,
+      Median: median,
+      Mean: mean,
+    };
 
-  // Reset list vals in DOM
-  pricesList.innerHTML = "";
+    // Reset list vals in DOM
+    pricesList.innerHTML = "";
 
-  for (item in pricesObj) {
-    const li = document.createElement("li");
+    for (item in pricesObj) {
+      const li = document.createElement("li");
 
-    // Format nums array correctly in DOM
-    if (item == "Prices") {
-      li.textContent = `${item}: `;
-      for (i of pricesObj[item]) li.textContent += `$${i}   `;
-    } else {
-      li.textContent = `${item}: $${pricesObj[item]} `;
+      // Format nums array correctly in DOM
+      if (item == "Prices") {
+        li.textContent = `${item}: `;
+        for (i of pricesObj[item]) li.textContent += `$${i}   `;
+      } else {
+        li.textContent = `${item}: $${pricesObj[item]} `;
+      }
+
+      li.classList.add("list-group-item");
+
+      // If median is an even number
+      if (item === "Median" && pricesObj["Median"] % 2 === 0) {
+        li.style.color = "red";
+      }
+
+      // Add stuff to DOM
+      pricesList.appendChild(li);
     }
-
-    li.classList.add("list-group-item");
-
-    // If median is an even number
-    if (item === "Median" && pricesObj["Median"] % 2 === 0) {
-      li.style.color = "red";
-    }
-
-    // Add stuff to DOM
-    pricesList.appendChild(li);
+  } else {
+    pricesList.textContent = `Please enter numbers.`;
   }
 });
 
