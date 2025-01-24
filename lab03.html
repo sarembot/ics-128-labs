@@ -93,13 +93,29 @@
                 class="form-group d-flex flex-column justify-content-center"
                 id="iterationDiv"
               >
-                <h4 class="text-center">Counters</h4>
+                <h4 class="text-center fw-bold">Counters</h4>
                 <label for="iteration">Find Spaces in a Name</label>
-                <input type="text" class="form-control" id="spaces" />
-                <div id="spacesDisplay"></div>
+                <input
+                  type="text"
+                  class="form-control border-black"
+                  id="spaces"
+                />
+                <div id="spacesDisplay" class="py-2">
+                  <p id="spacesP" class="">
+                    There are <span id="spacesSpan">0</span> spaces in that name
+                  </p>
+                </div>
                 <label for="iteration">Find Letters in a Name</label>
-                <input type="text" class="form-control" id="letters" />
-                <div id="lettersDisplay"></div>
+                <input
+                  type="text"
+                  class="form-control border-black"
+                  id="letters"
+                />
+                <div id="lettersDisplay" class="py-3">
+                  <p id="lettersP">
+                    There are <span id="lettersSpan">0</span> L in that name
+                  </p>
+                </div>
                 <button
                   type="submit"
                   class="btn btn-danger border-dark rounded fw-bold mt-2 mx-4"
@@ -117,18 +133,16 @@
             <div class="card-body">
               <div
                 class="form-group d-flex flex-column justify-content-center"
-                id="fastestDiv"
+                id="dateDiv"
               >
-                <h4 class="text-center">Speeds</h4>
-                <label for="alexa">Alexa's Speed:</label>
-                <input type="text" id="alexa" class="form-control" />
-                <label for="siri">Siri's Speed:</label>
-                <input type="text" id="siri" class="form-control" />
-                <div id="fastestDisplay"></div>
+                <h4 class="text-center">Dates</h4>
+                <label for="date">Enter a date:</label>
+                <input type="date" id="date" class="form-control" />
+                <div id="dateDisplay"></div>
                 <button
                   type="submit"
                   class="btn btn-success rounded fw-bold border-dark mt-2 mx-4"
-                  id="fastestBtn"
+                  id="dateBtn"
                 >
                   Go!
                 </button>
