@@ -38,6 +38,27 @@ countersBtn.addEventListener("click", () => {
 //   console.log("working");
 // });
 
+dateBtn.addEventListener("click", () => {
+  const div = document.getElementById("dateDisplay");
+  const date = document.getElementById("date").value;
+
+  const datesDisplayObj = {
+    "Display your birthday here: ": `${date}`,
+    "How many days in the month: ": `${month}`,
+    "How many work days: ": `${days}`,
+    "BC Minimum Wage: ": `${wage}`,
+    "Salary for the month (8hours): ": `${salary}`,
+  };
+
+  div.innerText += date;
+  console.log(date);
+
+  function constructPs(obj) {
+    for (item in obj) {
+    }
+  }
+});
+
 function counter(str, char) {
   let spaceCount = 0;
   let charCount = 0;
