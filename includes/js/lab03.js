@@ -2,9 +2,6 @@
 const countersDiv = document.getElementById("countersDiv");
 const dateBtn = document.getElementById("dateBtn");
 const errorBtn = document.getElementById("errorBtn");
-const countersBtn = document.getElementById("countersBtn");
-const spacesDisplay = document.getElementById("spacesDisplay");
-const lettersDisplay = document.getElementById("lettersDisplay");
 
 // COUNTERS
 countersDiv.addEventListener("input", (e) => {
@@ -21,11 +18,11 @@ countersDiv.addEventListener("input", (e) => {
   let lastCharLetters = lettersVal.slice(-1);
 
   // If user types in spaces input
-  if (e.target === spacesInput) {
+  if (e.target === spacesInput && lastCharSpaces == " ") {
     updateInput(spacesSpan, spacesVal, " ");
     changeSpanColour(spacesSpan);
     // If user types in letters input
-  } else if (e.target === lettersInput) {
+  } else if (e.target === lettersInput && lastCharLetters == letter) {
     updateInput(lettersSpan, lettersVal, letter);
     changeSpanColour(lettersSpan);
   }
@@ -33,11 +30,11 @@ countersDiv.addEventListener("input", (e) => {
   // Make sure empty string resets back to 0
   if (spacesVal === "") {
     spacesSpan.innerText = 0;
-    spacesSpan.style.color = "white";
+    spacesSpan.style.color = "black";
   }
   if (lettersVal === "") {
     lettersSpan.innerText = 0;
-    lettersSpan.style.color = "white";
+    lettersSpan.style.color = "black";
   }
 });
 
