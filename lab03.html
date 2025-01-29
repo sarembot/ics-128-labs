@@ -89,7 +89,7 @@
             <div class="card-body">
               <div
                 class="form-group d-flex flex-column justify-content-center"
-                id="iterationDiv"
+                id="countersDiv"
               >
                 <h4 class="text-center fw-bold">Counters</h4>
                 <label for="iteration">Find Spaces in a Name</label>
@@ -98,10 +98,24 @@
                   class="form-control border-black"
                   id="spaces"
                 />
-                <div id="spacesDisplay" class="py-2">
-                  <p id="spacesP" class="">
-                    There are <span id="spacesSpan">0</span> spaces in that name
+                <div id="spacesDisplay" class="" class="py-2">
+                  <p id="spacesP" class="text-start" class="">
+                    Space count: <span id="spacesSpan">0</span>
                   </p>
+                </div>
+                <div class="row">
+                  <div class="container col-7">
+                    <label class="" for="char">Enter a letter: </label>
+                  </div>
+                  <div class="container col-5">
+                    <input
+                      type="text"
+                      id="char"
+                      name="char"
+                      placeholder="eg. A"
+                      class="form-control border-black"
+                    />
+                  </div>
                 </div>
                 <label for="iteration">Find Letters in a Name</label>
                 <input
@@ -109,18 +123,18 @@
                   class="form-control border-black"
                   id="letters"
                 />
-                <div id="lettersDisplay" class="py-3">
+                <div id="lettersDisplay" class="py-2">
                   <p id="lettersP">
-                    There are <span id="lettersSpan">0</span> L in that name
+                    Letter count: <span id="lettersSpan">0</span>
                   </p>
                 </div>
-                <button
+                <!-- <button
                   type="submit"
                   class="btn btn-danger border-dark rounded fw-bold mt-2 mx-4"
                   id="countersBtn"
                 >
                   Submit
-                </button>
+                </button> -->
               </div>
             </div>
           </div>

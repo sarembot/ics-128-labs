@@ -1,47 +1,87 @@
 // ICS128 LAB03 - Mitchell Saremba
-const countersBtn = document.getElementById("countersBtn");
+const countersDiv = document.getElementById("countersDiv");
 const dateBtn = document.getElementById("dateBtn");
 const errorBtn = document.getElementById("errorBtn");
-
+const countersBtn = document.getElementById("countersBtn");
 const spacesDisplay = document.getElementById("spacesDisplay");
 const lettersDisplay = document.getElementById("lettersDisplay");
 
-const spacesInput = document.getElementById("spaces");
-const lettersInput = document.getElementById("letters");
-
-// TODO: Use spacesInput and add "input" event
-countersBtn.addEventListener("click", () => {
-  const spacesVal = document.getElementById("spaces").value;
-  let lettersVal = document.getElementById("letters").value;
+// COUNTERS
+countersDiv.addEventListener("input", (e) => {
+  const spacesInput = document.getElementById("spaces");
+  const lettersInput = document.getElementById("letters");
   const spacesSpan = document.getElementById("spacesSpan");
+  const lettersSpan = document.getElementById("lettersSpan");
+  const spacesVal = document.getElementById("spaces").value;
+  const lettersVal = document.getElementById("letters").value;
+  const letter = document.getElementById("char").value;
 
-  // counts[0] --> spacesCount, counts[1] --> lettersCount
-  const [spacesCount, lettersCount] = counter(spacesVal, "L");
+  // Make sure number only changes colour on target input
+  let lastCharSpaces = spacesVal.slice(-1);
+  let lastCharLetters = lettersVal.slice(-1);
 
-  // Clear DOM
-  // spacesDisplay.innerHTML = "";
-  // lettersDisplay.innerHTML = "";
+  // If user types in spaces input
+  if (e.target === spacesInput) {
+    updateInput(spacesSpan, spacesVal, " ");
+    changeSpanColour(spacesSpan);
+    // If user types in letters input
+  } else if (e.target === lettersInput) {
+    updateInput(lettersSpan, lettersVal, letter);
+    changeSpanColour(lettersSpan);
+  }
 
-  spacesSpan.classList.add("text-danger");
-  spacesSpan.classList.add("fw-bold");
-  spacesSpan.textContent = spacesCount;
-
-  console.log(typeof document.getElementById("spacesP").textContent);
-
-  lettersSpan.classList.add("text-success");
-  lettersSpan.classList.add("fw-bold");
-  lettersSpan.textContent = lettersCount;
-
-  lettersVal = `${document.getElementById("spacesP").textContent}`;
+  // Make sure empty string resets back to 0
+  if (spacesVal === "") {
+    spacesSpan.innerText = 0;
+    spacesSpan.style.color = "white";
+  }
+  if (lettersVal === "") {
+    lettersSpan.innerText = 0;
+    lettersSpan.style.color = "white";
+  }
 });
 
-// lettersInput.addEventListener("input", () => {
-//   console.log("working");
-// });
+function updateInput(span, str, char) {
+  span.innerHTML = ``;
+  span.innerText = `${counter(str, char)}`;
+}
 
+function changeSpanColour(span) {
+  const colors = [
+    "red",
+    "green",
+    "blue",
+    "orange",
+    "yellow",
+    "purple",
+    "darkblue",
+    "cyan",
+  ];
+
+  // Change color to random index in colors
+  span.style.color = colors[Math.floor(Math.random() * colors.length)];
+}
+
+function counter(str, char) {
+  let count = 0;
+
+  for (c of str) {
+    c = c.toLowerCase();
+    char = char.toLowerCase();
+    if (c === char) count += 1;
+  }
+
+  return count;
+}
+
+// DATES
 dateBtn.addEventListener("click", () => {
   const div = document.getElementById("dateDisplay");
   const date = document.getElementById("date").value;
+
+  const dateSpan = document.createElement("span");
+  dateSpan.innerText = date;
+  dateSpan.classList.add("primary");
 
   const dateObj = new Date(date);
   const daysInMonth = getDaysInMonth(dateObj);
@@ -49,29 +89,27 @@ dateBtn.addEventListener("click", () => {
   const minWage = (17.4).toFixed(2);
   const salary = (8 * weekdayCount * minWage).toFixed(2);
 
+  // Reset DOM
   div.innerText = "";
 
-  div.innerHTML = `
-    <p>Birthday: ${date}</p>
-    <p>Days in the month: ${daysInMonth}</p>
-    <p>Weekdays in the month: ${weekdayCount}</p>
-    <p>Min. Wage in BC: $${minWage}</p>
-    <p>Monthly salary: $${salary}</p>
-  `;
+  div.appendChild(constructP("Day: ", date, "red"));
+  div.appendChild(constructP("Days in the month: ", daysInMonth, "blue"));
+  div.appendChild(constructP("Weekdays in month: ", weekdayCount, "magenta"));
+  div.appendChild(constructP("Min. Wage n BC: ", `$${minWage}`, "orange"));
+  div.appendChild(constructP("Monthly Salary: ", `$${salary}`, "green"));
 
-  console.log(date);
+  function constructP(str, item, color) {
+    const p = document.createElement("p");
+    p.innerText = str;
+
+    const span = document.createElement("span");
+    span.innerText = item;
+    span.style.color = color;
+    p.appendChild(span);
+
+    return p;
+  }
 });
-
-function counter(str, char) {
-  let spaceCount = 0;
-  let charCount = 0;
-
-  for (c of str) if (c === " ") spaceCount += 1;
-  for (c of str)
-    if (c.toUpperCase() === char || c.toLowerCase() == char) charCount += 1;
-
-  return [spaceCount, charCount];
-}
 
 function getDaysInMonth(dateObj) {
   let daysInMonth;
@@ -91,7 +129,9 @@ function getDaysInMonth(dateObj) {
     case 10:
       daysInMonth = 30;
       return daysInMonth;
+    // Feb is special
     case 1:
+      // If leap year
       if (
         dateObj.getYear() % 4 === 0 &&
         (year % 100 !== 0 || year % 400 === 0)
@@ -110,7 +150,7 @@ function getWeekDaysInMonth(dateObj) {
   // Loop through days of month
   for (let day = 0; day <= getDaysInMonth(dateObj); day++) {
     // Create new Date() for each day
-    // dateObj.setDate(day) returns m str since epoch
+    // dateObj.setDate(day) returns ms str since epoch
     let currentDay = new Date(dateObj.setDate(day));
 
     if (currentDay.getDay() > 0 && currentDay.getDay() < 6) weekdays++;
@@ -129,3 +169,5 @@ function isItInRange(input) {
     throw new Error(`Your value is in the correct range.`);
   }
 }
+
+// ERROR HANDLING
