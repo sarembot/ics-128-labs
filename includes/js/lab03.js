@@ -95,6 +95,7 @@ dateBtn.addEventListener("click", () => {
 
   // Reset DOM
   div.innerText = "";
+  div.style.cssText = ``;
 
   // Populate DOM
   try {
@@ -204,7 +205,7 @@ errorBtn.addEventListener("click", () => {
   p2.innerText =
     val > 2
       ? `Your number is greater than 2: `
-      : `Your number is less than 2: `;
+      : `Your number is less than or equal to 2: `;
   p2.appendChild(s2);
 
   div.appendChild(p1);
@@ -233,7 +234,7 @@ function isItInRange(input) {
   if (input <= 0) {
     throw new Error(`Your number: ${input} must be greater than zero.`);
   } else if (input <= 2) {
-    throw new Error(`The value is less than or equal to 2: ${input}`);
+    throw new Error(`Number must be greater than 2: ${input}`);
   } else if (input > 2 && input < 4) {
     return `The value is over 2: ${input}`;
   } else {
