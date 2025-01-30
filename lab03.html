@@ -95,7 +95,7 @@
                 <label for="iteration">Find Spaces in a Name</label>
                 <input
                   type="text"
-                  class="form-control border-black"
+                  class="form-control border-secondary"
                   id="spaces"
                 />
                 <div id="spacesDisplay" class="" class="py-2">
@@ -113,14 +113,14 @@
                       id="char"
                       name="char"
                       placeholder="eg. A"
-                      class="form-control border-black"
+                      class="form-control border-secondary"
                     />
                   </div>
                 </div>
                 <label for="iteration">Find Letters in a Name</label>
                 <input
                   type="text"
-                  class="form-control border-black"
+                  class="form-control border-secondary"
                   id="letters"
                 />
                 <div id="lettersDisplay" class="py-2">
@@ -141,15 +141,19 @@
         </div>
         <!-- Dates -->
         <div class="col-sm-6 mb-4">
-          <div class="card h-100 border-dark">
+          <div class="card h-100 bg-light border-dark">
             <div class="card-body">
               <div
                 class="form-group d-flex flex-column justify-content-center"
                 id="dateDiv"
               >
-                <h4 class="text-center">Dates</h4>
+                <h4 class="text-center fw-bold">Dates</h4>
                 <label for="date">Enter a date:</label>
-                <input type="date" id="date" class="form-control" />
+                <input
+                  type="date"
+                  id="date"
+                  class="form-control border-secondary"
+                />
                 <div id="dateDisplay"></div>
                 <button
                   type="submit"
@@ -165,20 +169,33 @@
 
         <!-- Error Handling -->
         <div class="col-sm-6 mb-4">
-          <div class="card h-100 border-dark">
+          <div class="card h-100 bg-light border-dark">
             <div class="card-body">
               <div
                 class="form-group d-flex flex-column justify-content-center"
                 id="dateDiv"
               >
-                <h4 class="text-center">Error Handling</h4>
+                <h4 class="text-center fw-bold">Error Handling</h4>
                 <label for="error">Number larger than 2:</label>
-                <input type="error" id="error" class="form-control" />
-                <div id="errorDisplay"></div>
+                <input
+                  type="error"
+                  id="error"
+                  class="form-control border-secondary"
+                />
+                <div id="errorDisplay">
+                  <p id="errorPOne">
+                    Your number is:
+                    <span class="text-primary" id="errorSpanOne"></span>
+                  </p>
+                  <p id="errorPTwo">
+                    Your number is greater than 2:
+                    <span class="text-success" id="errorSpanTwo"></span>
+                  </p>
+                </div>
                 <button
                   type="submit"
                   class="btn btn-success rounded fw-bold border-dark mt-2 mx-4"
-                  id="ErrorBtn"
+                  id="errorBtn"
                 >
                   Handle Error
                 </button>

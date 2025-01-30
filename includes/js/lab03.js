@@ -4,6 +4,7 @@ const dateBtn = document.getElementById("dateBtn");
 const errorBtn = document.getElementById("errorBtn");
 
 // COUNTERS
+// Uses event bubbling - event attached to the entire div
 countersDiv.addEventListener("input", (e) => {
   const spacesInput = document.getElementById("spaces");
   const lettersInput = document.getElementById("letters");
@@ -13,21 +14,25 @@ countersDiv.addEventListener("input", (e) => {
   const lettersVal = document.getElementById("letters").value;
   const letter = document.getElementById("char").value;
 
-  // Make sure number only changes colour on target input
+  // To make sure number only changes colour on target input
   let lastCharSpaces = spacesVal.slice(-1);
   let lastCharLetters = lettersVal.slice(-1);
 
-  // If user types in spaces input
+  // If user types in spaces input and it's a good input
   if (e.target === spacesInput && lastCharSpaces == " ") {
     updateInput(spacesSpan, spacesVal, " ");
     changeSpanColour(spacesSpan);
-    // If user types in letters input
-  } else if (e.target === lettersInput && lastCharLetters == letter) {
+
+    // If user types in letters input - Case insensitive
+  } else if (
+    (e.target === lettersInput && lastCharLetters === letter.toUpperCase()) ||
+    lastCharLetters === letter.toLowerCase()
+  ) {
     updateInput(lettersSpan, lettersVal, letter);
     changeSpanColour(lettersSpan);
   }
 
-  // Make sure empty string resets back to 0
+  // To make sure empty string resets back to 0
   if (spacesVal === "") {
     spacesSpan.innerText = 0;
     spacesSpan.style.color = "black";
@@ -39,8 +44,10 @@ countersDiv.addEventListener("input", (e) => {
 });
 
 function updateInput(span, str, char) {
+  const display = counter(str, char);
+
   span.innerHTML = ``;
-  span.innerText = `${counter(str, char)}`;
+  span.innerText = display;
 }
 
 function changeSpanColour(span) {
@@ -49,10 +56,10 @@ function changeSpanColour(span) {
     "green",
     "blue",
     "orange",
-    "yellow",
     "purple",
     "darkblue",
     "cyan",
+    "magenta",
   ];
 
   // Change color to random index in colors
@@ -61,10 +68,13 @@ function changeSpanColour(span) {
 
 function counter(str, char) {
   let count = 0;
+  char = char.toLowerCase();
 
+  // loop through each char in str
   for (c of str) {
+    // change to lower case for comparison
     c = c.toLowerCase();
-    char = char.toLowerCase();
+
     if (c === char) count += 1;
   }
 
@@ -76,10 +86,7 @@ dateBtn.addEventListener("click", () => {
   const div = document.getElementById("dateDisplay");
   const date = document.getElementById("date").value;
 
-  const dateSpan = document.createElement("span");
-  dateSpan.innerText = date;
-  dateSpan.classList.add("primary");
-
+  // Get necessary values
   const dateObj = new Date(date);
   const daysInMonth = getDaysInMonth(dateObj);
   const weekdayCount = getWeekDaysInMonth(dateObj);
@@ -89,12 +96,28 @@ dateBtn.addEventListener("click", () => {
   // Reset DOM
   div.innerText = "";
 
-  div.appendChild(constructP("Day: ", date, "red"));
-  div.appendChild(constructP("Days in the month: ", daysInMonth, "blue"));
-  div.appendChild(constructP("Weekdays in month: ", weekdayCount, "magenta"));
-  div.appendChild(constructP("Min. Wage n BC: ", `$${minWage}`, "orange"));
-  div.appendChild(constructP("Monthly Salary: ", `$${salary}`, "green"));
+  // Populate DOM
+  try {
+    div.appendChild(constructP("Day: ", date, "red"));
+    div.appendChild(constructP("Days in the month: ", daysInMonth, "blue"));
+    div.appendChild(constructP("Weekdays in month: ", weekdayCount, "magenta"));
+    div.appendChild(constructP("Min. Wage n BC: ", `$${minWage}`, "orange"));
+    div.appendChild(constructP("Monthly Salary: ", `$${salary}`, "green"));
 
+    // If user didn't enter a date
+    if (date === "") throw new Error("Please enter a valid date.");
+  } catch (error) {
+    div.style.cssText = `
+      padding: 2em;
+      text-align: center;
+      font-size = 1em;
+      font-weight = bold; 
+      color: red;
+    `;
+
+    div.textContent = error;
+  }
+  // Make P tags to easily add custom colours/items
   function constructP(str, item, color) {
     const p = document.createElement("p");
     p.innerText = str;
@@ -110,6 +133,7 @@ dateBtn.addEventListener("click", () => {
 
 function getDaysInMonth(dateObj) {
   let daysInMonth;
+  // Separate months with 30/31 days
   switch (dateObj.getMonth()) {
     case 0:
     case 2:
@@ -119,52 +143,100 @@ function getDaysInMonth(dateObj) {
     case 9:
     case 11:
       daysInMonth = 31;
-      return daysInMonth;
+      break;
     case 3:
     case 5:
     case 8:
     case 10:
       daysInMonth = 30;
-      return daysInMonth;
+      break;
     // Feb is special
     case 1:
       // If leap year
       if (
         dateObj.getYear() % 4 === 0 &&
-        (year % 100 !== 0 || year % 400 === 0)
+        (dateObj.getYear() % 100 !== 0 || dateObj.getYear() % 400 === 0)
       ) {
         daysInMonth = 29;
-        return daysInMonth;
+        break;
       } else {
         daysInMonth = 28;
-        return daysInMonth;
+        break;
       }
   }
+
+  return daysInMonth;
 }
 
 function getWeekDaysInMonth(dateObj) {
   let weekdays = 0;
   // Loop through days of month
-  for (let day = 0; day <= getDaysInMonth(dateObj); day++) {
+  for (let day = 1; day <= getDaysInMonth(dateObj); day++) {
     // Create new Date() for each day
-    // dateObj.setDate(day) returns ms str since epoch
-    let currentDay = new Date(dateObj.setDate(day));
+    let currentDay = new Date(dateObj.setDate(day)); //setDate returns str in ms - use constructor to get proper type
 
+    // if currentDay is a weekday, add it to count
     if (currentDay.getDay() > 0 && currentDay.getDay() < 6) weekdays++;
   }
   return weekdays;
 }
 
+// ERROR HANDLING
+errorBtn.addEventListener("click", () => {
+  const div = document.getElementById("errorDisplay");
+  const val = document.getElementById("error").value;
+
+  div.innerHTML = ``;
+
+  // Prepare DOM for results
+  const p1 = document.createElement("p");
+  const p2 = document.createElement("p");
+  const s1 = document.createElement("span");
+  const s2 = document.createElement("span");
+  s1.classList.add("text-primary");
+  s2.classList.add("text-success");
+  s1.innerText = val;
+  s2.innerText = val;
+
+  p1.innerText = `Your number is: `;
+  p1.appendChild(s1);
+
+  p2.innerText =
+    val > 2
+      ? `Your number is greater than 2: `
+      : `Your number is less than 2: `;
+  p2.appendChild(s2);
+
+  div.appendChild(p1);
+  div.appendChild(p2);
+
+  // Create element to display result of isItInRange
+  const errorP = document.createElement("p");
+  errorP.classList.add("text-danger");
+
+  // try and store string return value into result
+  try {
+    const result = isItInRange(val);
+    errorP.innerText = result;
+    errorP.classList.remove("text-danger");
+    errorP.classList.add("text-success");
+    div.appendChild(errorP);
+
+    // if isItInRange throws an error, display error message instead
+  } catch (error) {
+    errorP.innerText = error;
+    div.appendChild(errorP);
+  }
+});
+
 function isItInRange(input) {
   if (input <= 0) {
-    throw new Error("The value must be zero or greater");
-  } else if (input < 2) {
-    throw new Error(`The value is less than 2: ${input}`);
+    throw new Error(`Your number: ${input} must be greater than zero.`);
+  } else if (input <= 2) {
+    throw new Error(`The value is less than or equal to 2: ${input}`);
   } else if (input > 2 && input < 4) {
-    throw new Error(`The value is over 2: ${input}`);
+    return `The value is over 2: ${input}`;
   } else {
-    throw new Error(`Your value is in the correct range.`);
+    return `Your number is in the correct range`;
   }
 }
-
-// ERROR HANDLING
