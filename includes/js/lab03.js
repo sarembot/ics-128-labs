@@ -95,6 +95,7 @@ dateBtn.addEventListener("click", () => {
 
   // Reset DOM
   div.innerText = "";
+  div.cssText = ``;
 
   // Populate DOM
   try {
