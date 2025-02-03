@@ -18,8 +18,8 @@ class Suite extends Room {
   constructor() {}
 }
 
-let standardRoom = new Room(
-  "Standard",
+let singleRoom = new Room(
+  "Single",
   "Single bed in 36-bed dorm",
   "$159",
   "/images/lab04/lab04_singlebed.jpg"
@@ -39,7 +39,7 @@ let penthouseRoom = new Room(
   "/images/lab04/lab04_penthouse.jpg"
 );
 
-let roomTypes = [standardRoom, doubleRoom, penthouseRoom];
+let roomTypes = [singleRoom, doubleRoom, penthouseRoom];
 
 // let roomTypes = [
 //   {
