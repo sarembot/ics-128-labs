@@ -28,6 +28,10 @@
   color: var(--text-color);
 }
 
+.hotel-div {
+  max-width: 800px;
+}
+
 #footer {
   /* position: fixed; */
   bottom: 0;
