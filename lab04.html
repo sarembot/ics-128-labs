@@ -30,9 +30,9 @@
       crossorigin="anonymous"
     ></script>
 
-    <title>Lab 1</title>
+    <title>ICS128 Labs</title>
   </head>
-  <body>
+  <body id="body">
     <!-- Navbar -->
     <nav id="nav" class="navbar fixed-top navbar-expand-sm">
       <div class="container-fluid">
@@ -79,17 +79,31 @@
         </div>
       </div>
     </nav>
+
     <!-- Block content -->
-    <div id="block" class="container justify-content-center">
-      <div id="hello" class="p-3 text-center mt-5"></div>
-      <div id="table" class="container-fluid"></div>
+    <div id="block" class="container">
+      <div
+        id="display"
+        class="container d-flex flex-column align-items-center justify-content-center"
+      ></div>
+    </div>
+    <div class="container">
+      <table id="table" class="table-striped table table-dark border-1">
+        <tr>
+          <td>Row1 cell1</td>
+          <td>Row1 cell2</td>
+        </tr>
+      </table>
+      <br />
+      <button class="btn btn-secondary border-1 border-black mb-3" id="tableBtn">
+        Insert a row
+      </button>
     </div>
 
     <!-- Footer -->
-    <footer id="footer">
+    <footer id="footer" class="">
       <span>Mitchell Saremba Copyright 2025.</span>
     </footer>
-
-    <script src="includes/js/lab01.js"></script>
+    <script src="includes/js/lab04.js"></script>
   </body>
 </html>
