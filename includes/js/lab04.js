@@ -1,18 +1,17 @@
 // Mitchell Saremba - ICS 128 LAB04
-
 "use strict";
-
 const display = document.getElementById("display");
-const tableBtn = document.getElementById("tableBtn");
-const table = document.getElementById("table");
 
 class Room {
-  constructor(type, description, price, img) {
+  constructor(type, description, price, image) {
+    // Basic info
     this.type = type;
     this.description = description;
     this.price = price;
-    this.image = img;
-    this.button = `${this.type.toLowerCase()}Btn`;
+    this.image = image;
+
+    // Custom ID's for innerHTML
+    this.button = `${this.type.toLowerCase()}Btn`; 
     this.modal = `${this.type.toLowerCase()}Modal`;
   }
 }
@@ -38,11 +37,11 @@ let roomTypes = [
   ),
 ];
 
-// For each type of room, create a div w/ info and add it to DOM
 roomTypes.forEach((obj) => {
   constructRoomDiv(obj);
 });
 
+// Build bootstrap card & modal using Room obj attributes
 function constructRoomDiv(obj) {
   display.innerHTML += `
 
@@ -103,76 +102,15 @@ function constructRoomDiv(obj) {
 </div>
   
   `;
-
-  // display.innerHTML += `
-  // <div class="row d-flex align-items-center my-3 p-2 border border-secondary bg-light rounded">
-  // <div class="col-sm-6">
-  // <img src="${
-  //   obj.image
-  // }" alt="Description" class="img-fluid rounded border-black border-2">
-  //   </div>
-  //   <div class="col-sm-6">
-  //   <h3>${obj.type}</h3>
-  //   <hr class="border border-secondary mx-auto">
-  //   <p class="lh-1">${
-  //     // If description is an array, display items like a list
-  //     Array.isArray(obj.description)
-  //       ? obj.description.join(`<br></br>`)
-  //       : obj.description
-  //   }</p>
-  //   <p>${obj.price}</p>
-
-  //   <button id=${
-  //     obj.button
-  //   } type="button" class="btn btn-secondary" data-toggle="modal" data-target="#${
-  //   obj.modal
-  // }">
-  //       Book Room
-  //       </button>
-  //       </div>
-
-  //       <div
-  //       class="modal fade"
-  //       id=${obj.modal}
-  //       tabindex="-1"
-  //       role="dialog"
-  //       aria-labelledby="exampleModalCenterTitle"
-  //       aria-hidden="true"
-  //       >
-  //       <div class="modal-dialog modal-dialog-centered" role="document">
-  //       <div class="modal-content">
-  //       <div class="modal-header">
-  //       <h5 class="modal-title" id="exampleModalLongTitle">Confirm Your Stay</h5>
-  //       </div>
-  //       <div class="modal-body">
-  //       <p>Please review your order below</p>
-  //       <p class="fs-3">${obj.type} ${
-  //   // if type is penthouse, use suite instead of room
-  //   obj.type == "Penthouse" ? "suite" : "room"
-  // } for ${obj.price}</p>
-  //           </div>
-  //           <div class="modal-footer">
-  //           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-  //           <form action="/lab04_landing.html" method="get">
-  //           <input type="submit" name="confirm" value="Confirm" class="btn btn-primary">
-  //           </form>
-
-  //           </div>
-  //           </div>
-  //           </div>
-  //           </div>
-  //           </div>
-
-  //           `;
 }
 
-// Booking button event listeners
+// Modal triggering buttons for room divs
 display.addEventListener("click", (e) => {
   const singleBtn = document.getElementById("singleBtn");
   const doubleBtn = document.getElementById("doubleBtn");
   const penthouseBtn = document.getElementById("penthouseBtn");
 
-  // Construct modal objects from DOM element
+  // Turn bootstrap modals from DOM into JS objects
   const singleModal = new bootstrap.Modal(
     document.getElementById("singleModal")
   );
@@ -185,9 +123,9 @@ display.addEventListener("click", (e) => {
     document.getElementById("penthouseModal")
   );
 
-  // if singleBtn clicked
+  // If singleBtn clicked
   if (e.target === singleBtn) {
-    singleModal.show(); // bring up confirmation modal
+    singleModal.show(); // bring up modal
   } else if (e.target === doubleBtn) {
     doubleModal.show();
   } else if (e.target === penthouseBtn) {
@@ -195,14 +133,18 @@ display.addEventListener("click", (e) => {
   }
 });
 
+
 // Add rows to table
-let rowCount = 1;
+const table = document.getElementById("table");
+const tableBtn = document.getElementById("tableBtn");
+
+let row = 1; // Keep track of latest row
 tableBtn.addEventListener("click", () => {
-  rowCount += 1;
+  row += 1;
   table.innerHTML += `
     <tr>
-      <td>Row ${rowCount} Cell 1</td>
-      <td>Row ${rowCount} Cell 2</td>
+      <td>Row ${row} Cell 1</td>
+      <td>Row ${row} Cell 2</td>
     </tr>
   `;
 });
