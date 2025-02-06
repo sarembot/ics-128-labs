@@ -41,7 +41,7 @@ roomTypes.forEach((obj) => {
   constructRoomDiv(obj);
 });
 
-// Build bootstrap card & modal using Room obj attributes
+// Builds bootstrap card & modal using Room obj attributes
 function constructRoomDiv(obj) {
   display.innerHTML += `
 
@@ -58,6 +58,7 @@ function constructRoomDiv(obj) {
         <hr class="border border-secondary mx-auto p-0 m-1">
         <p class="card-text lh-1">
           ${
+            // If description is an array, display it like a list
             Array.isArray(obj.description)
               ? obj.description.join("<br></br>")
               : obj.description
@@ -88,6 +89,7 @@ function constructRoomDiv(obj) {
       <div class="modal-body">
         <p>Please review your order below</p>
         <p class="fs-3">${obj.type} ${
+        // If type is penthouse, use suite instead of room
     obj.type == "Penthouse" ? "suite" : "room"
   } for ${obj.price}</p>
       </div>
@@ -123,8 +125,8 @@ display.addEventListener("click", (e) => {
     document.getElementById("penthouseModal")
   );
 
-  if (e.target === singleBtn) { // if singleBtn clicked
-    singleModal.show(); // bring up modal
+  if (e.target === singleBtn) { // If singleBtn clicked
+    singleModal.show(); // Bring up modal
   } else if (e.target === doubleBtn) {
     doubleModal.show();
   } else if (e.target === penthouseBtn) {
