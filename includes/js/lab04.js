@@ -104,7 +104,7 @@ function constructRoomDiv(obj) {
   `;
 }
 
-// Modal triggering buttons for room divs
+// Handles modal triggering buttons for room divs
 display.addEventListener("click", (e) => {
   const singleBtn = document.getElementById("singleBtn");
   const doubleBtn = document.getElementById("doubleBtn");
@@ -123,8 +123,7 @@ display.addEventListener("click", (e) => {
     document.getElementById("penthouseModal")
   );
 
-  // If singleBtn clicked
-  if (e.target === singleBtn) {
+  if (e.target === singleBtn) { // if singleBtn clicked
     singleModal.show(); // bring up modal
   } else if (e.target === doubleBtn) {
     doubleModal.show();
