@@ -88,6 +88,7 @@ dateBtn.addEventListener("click", () => {
 
   // Get necessary values
   const dateObj = new Date(date);
+  console.log(dateObj);
   const daysInMonth = getDaysInMonth(dateObj);
   const weekdayCount = getWeekDaysInMonth(dateObj);
   const minWage = (17.4).toFixed(2);
@@ -134,8 +135,10 @@ dateBtn.addEventListener("click", () => {
 
 function getDaysInMonth(dateObj) {
   let daysInMonth;
+  let month = dateObj.getUTCMonth();
+
   // Separate months with 30/31 days
-  switch (dateObj.getMonth()) {
+  switch (month) {
     case 0:
     case 2:
     case 4:
