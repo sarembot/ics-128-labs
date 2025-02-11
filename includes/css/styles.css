@@ -32,6 +32,15 @@
   max-width: 800px;
 }
 
+.hidden {
+  display: none;
+}
+
+.error-msg {
+  color: red;
+  display: none;
+}
+
 #footer {
   /* position: fixed; */
   bottom: 0;
