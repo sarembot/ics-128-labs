@@ -24,7 +24,7 @@ class Input {
 let inputObjs = [
   new Input(
     /* Name: */ "fName",
-    /* Regex Pattern: */ /^[a-zA-Z]+-?[a-zA-Z]+?$/, // Allows hyphen names
+    /* Regex: */ /^[a-zA-Z]+-?[a-zA-Z]+?$/, // Allows hyphen names
     /* Error Msg: */ "Please enter your first name without spaces."
   ),
   new Input(
@@ -37,7 +37,11 @@ let inputObjs = [
     /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
     "Please enter a valid email address."
   ),
-  new Input("age", /^[0-9]{1,2}$/, "Please enter a valid age."),
+  new Input(
+    "age",
+    /^([0-9]{1,2}|1[0,1]\d|120)$/, // 0-99 | 100-119 | 120
+    "Please enter a valid age."
+  ),
   new Input(
     "postalCode",
     // No D,F,I,O,Q,U
@@ -47,12 +51,12 @@ let inputObjs = [
   ),
   new Input(
     "phoneNumber",
-    /^\(?[0-9]{3}\)?[-\s]?[0-9]{3}[-\s]?[0-9]{4}$/, // Accepts common formats
+    /^\(?[0-9]{3}\)?[-\s]?[0-9]{3}[-\s]?[0-9]{4}$/, // Accepts multiple formats
     "Please enter a valid phone number."
   ),
 ];
 
-// ClassLists to easily add/remove a bunch of classes from input elements - for changing the border, etc
+// ClassLists to add/remove a bunch of classes from input elements - for changing the border, etc
 let goodInputClassList = [
   "border",
   "border-4",
@@ -108,8 +112,8 @@ inputObjs.forEach((obj) => {
 
       // If bad input
     } else {
-      obj.input.classList.remove(...goodInputClassList);
-      obj.input.classList.add(...badInputClassList);
+      obj.input.classList.remove(...goodInputClassList); // Remove greens styles
+      obj.input.classList.add(...badInputClassList); // Add red styles
 
       obj.icon.className = inputIcons.bad; // Set X icon
       obj.errorSpan.textContent = obj.errorMsg; // Display error message
@@ -120,9 +124,11 @@ inputObjs.forEach((obj) => {
   });
 });
 
+// FORM VALIDATION ---------------
+
 const form = document.getElementById("form");
 const display = document.getElementById("display");
-const loginModal = new bootstrap.Modal(document.getElementById("loginModal"));
+const loginModal = new bootstrap.Modal(document.getElementById("loginModal")); // Turns bootstrap modal into JS object for easy control
 const formBtn = document.getElementById("formBtn");
 const loginBtnDiv = document.getElementById("loginBtnDiv");
 const logoutBtnDiv = document.getElementById("logoutBtnDiv");
@@ -136,7 +142,7 @@ loginBtnDiv.addEventListener("click", () => {
 
 // Click on logout button
 logoutBtnDiv.addEventListener("click", () => {
-  // Display login button, hide logout button and profile
+  // Display login button, hide logout button, welcome message and profile
   loginBtnDiv.classList.remove("hidden");
   logoutBtnDiv.classList.add("hidden");
   display.classList.add("hidden");
@@ -147,7 +153,7 @@ logoutBtnDiv.addEventListener("click", () => {
 form.addEventListener("submit", (e) => {
   e.preventDefault(); // Prevents page from reloading and wiping out the profile card after submission
 
-  // Make sure each input is valid
+  // To be extra sure each input is valid
   for (let input of inputObjs) {
     if (!input.valid) {
       input.errorSpan.display = "inline"; // Display error message
@@ -183,10 +189,11 @@ form.addEventListener("submit", (e) => {
   logoutBtnDiv.classList.remove("hidden");
 });
 
+// Creates a key value pair for each input value of the form
 function getInputValues(inputs) {
   let values = {};
   inputs.forEach((obj) => {
-    values[obj.name] = obj.getUpdatedValue(); // Create an obj like { name : "Jeremiah" }, etc
+    values[obj.name] = obj.getUpdatedValue(); // Create an attribute like { name : "Jeremiah" }, etc
   });
   return values;
 }
