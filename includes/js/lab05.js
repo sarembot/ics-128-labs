@@ -123,11 +123,11 @@ inputObjs.forEach((obj) => {
 
       // If good input
     } else if (obj.regex.test(obj.getUpdatedValue())) {
-      obj.input.classList.remove(...badInputClassList);
-      obj.input.classList.add(...goodInputClassList);
+      obj.input.classList.remove(...badInputClassList); // Remove red styles
+      obj.input.classList.add(...goodInputClassList); // Add green styles
 
       obj.icon.className = inputIcons.good; // Set checkmark icon
-      obj.errorSpan.style.display = "none";
+      obj.errorSpan.style.display = "none"; // Hide error message
       obj.valid = true;
 
       // If bad input
@@ -169,13 +169,17 @@ logoutBtnDiv.addEventListener("click", () => {
 
 // Handle form submission
 form.addEventListener("submit", (e) => {
+  e.preventDefault(); // Prevents page from reloading and wiping out the profile card after submission
+
   // Make sure each input is valid
-  for (let obj in inputObjs) {
-    if (!obj.valid) {
-      e.preventDefault();
-      break;
+  for (let input of inputObjs) {
+    if (!input.valid) {
+      input.errorSpan.display = "inline"; // Display error message
+      return; // Abandon submission if an input is invalid
     }
   }
+
+  // If all inputs are valid...
 
   // Hide Modal
   loginModal.hide();
