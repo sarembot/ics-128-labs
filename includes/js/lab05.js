@@ -3,18 +3,16 @@
 
 // For creating "Input" objects with custom attributes
 class Input {
-  constructor(name, input, icon, iconSpan, regex, errorMsg) {
+  constructor(name, regex, errorMsg) {
     this.name = name;
-    this.input = input;
-    this.icon = icon;
-    this.iconDiv = iconSpan;
     this.regex = regex; // Define custom regex filter
     this.errorMsg = errorMsg; // Define custom error message
+
+    this.input = document.getElementById(`${this.name}Input`); // eg. fNameInput
+    this.icon = document.getElementById(`${this.name}Icon`); // eg. fNameIcon
     this.errorSpan = document.getElementById(`${this.name}Error`); // Contianer for error message
     this.valid = false; // Keeps track of if the input is good/bad
   }
-
-  error = new Error(this.errorMsg);
 
   // Allows us to get the most recent value - rather than the initial value
   getUpdatedValue() {
@@ -26,41 +24,22 @@ class Input {
 let inputObjs = [
   new Input(
     /* Name: */ "fName",
-    /* Input: */ document.getElementById("fNameInput"),
-    /* Icon: */ document.getElementById("fNameIcon"),
-    /* IconDiv: */ document.getElementById("fNameIconDiv"),
-    /* Regex Pattern: */ /^[a-zA-Z]+$/,
+    /* Regex Pattern: */ /^[a-zA-Z]+-?[a-zA-Z]+?$/, // Allows hyphen names
     /* Error Msg: */ "Please enter your first name without spaces."
   ),
   new Input(
     "lName",
-    document.getElementById("lNameInput"),
-    document.getElementById("lNameIcon"),
-    document.getElementById("lNameIconDiv"),
-    /^[a-zA-Z]+-?[a-zA-Z]+?$/, // Allows hyphenated names
+    /^[a-zA-Z]+-?[a-zA-Z]+?$/, // Allows hyphen
     "Please enter a valid last name."
   ),
   new Input(
     "email",
-    document.getElementById("emailInput"),
-    document.getElementById("emailIcon"),
-    document.getElementById("emailIconDiv"),
     /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
     "Please enter a valid email address."
   ),
-  new Input(
-    "age",
-    document.getElementById("ageInput"),
-    document.getElementById("ageIcon"),
-    document.getElementById("ageIconDiv"),
-    /^[0-9]{1,2}$/,
-    "Please enter a valid age. Nobody over 99 is allowed to use this site."
-  ),
+  new Input("age", /^[0-9]{1,2}$/, "Please enter a valid age."),
   new Input(
     "postalCode",
-    document.getElementById("postalCodeInput"),
-    document.getElementById("postalCodeIcon"),
-    document.getElementById("postalCodeIconDiv"),
     // No D,F,I,O,Q,U
     // Can't start with W or Z
     /^[a-ceg-hj-npr-vyA-CEG-HJ-NPR-VY][0-9][a-ceg-hj-npr-zA-CEG-HJ-NPR-Z][\s]?[0-9][a-ceg-hj-npr-zA-CEG-HJ-NPR-Z][0-9]$/,
@@ -68,11 +47,8 @@ let inputObjs = [
   ),
   new Input(
     "phoneNumber",
-    document.getElementById("phoneNumberInput"),
-    document.getElementById("phoneNumberIcon"),
-    document.getElementById("phoneNumberIconDiv"),
-    /^\(?[0-9]{3}\)?[-\s]?[0-9]{3}[-\s]?[0-9]{4}$/,
-    "Please enter a valid Phone number."
+    /^\(?[0-9]{3}\)?[-\s]?[0-9]{3}[-\s]?[0-9]{4}$/, // Accepts common formats
+    "Please enter a valid phone number."
   ),
 ];
 
