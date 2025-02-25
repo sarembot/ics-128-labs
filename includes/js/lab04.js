@@ -11,7 +11,7 @@ class Room {
     this.image = image;
 
     // Custom ID's for innerHTML
-    this.button = `${this.type.toLowerCase()}Btn`; 
+    this.button = `${this.type.toLowerCase()}Btn`;
     this.modal = `${this.type.toLowerCase()}Modal`;
   }
 }
@@ -21,19 +21,19 @@ let roomTypes = [
     "Single",
     "Single bed in 36-bed dorm",
     "$159",
-    "/images/lab04/lab04_singlebed.jpg"
+    "images/lab04/lab04_singlebed.jpg"
   ),
   new Room(
     "Double",
     "Private bunk beds",
     "$229",
-    "/images/lab04/lab04_doublebed.jpg"
+    "images/lab04/lab04_doublebed.jpg"
   ),
   new Room(
     "Penthouse",
     ["King Size Bed", "Bar", "Jacuzzi"],
     "$359",
-    "/images/lab04/lab04_penthouse.jpg"
+    "images/lab04/lab04_penthouse.jpg"
   ),
 ];
 
@@ -89,7 +89,7 @@ function constructRoomDiv(obj) {
       <div class="modal-body">
         <p>Please review your order below</p>
         <p class="fs-3">${obj.type} ${
-        // If type is penthouse, use suite instead of room
+    // If type is penthouse, use suite instead of room
     obj.type == "Penthouse" ? "suite" : "room"
   } for ${obj.price}</p>
       </div>
@@ -125,7 +125,8 @@ display.addEventListener("click", (e) => {
     document.getElementById("penthouseModal")
   );
 
-  if (e.target === singleBtn) { // If singleBtn clicked
+  if (e.target === singleBtn) {
+    // If singleBtn clicked
     singleModal.show(); // Bring up modal
   } else if (e.target === doubleBtn) {
     doubleModal.show();
@@ -133,7 +134,6 @@ display.addEventListener("click", (e) => {
     penthouseModal.show();
   }
 });
-
 
 // Add rows to table
 const table = document.getElementById("table");

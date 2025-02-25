@@ -219,6 +219,7 @@ const resortInfoHTML = `
 // EVENTS ------------------------------------------
 // All events handled in this listener... seems kinda greasy to me but it does what I want
 display.addEventListener("click", (e) => {
+  // Buttons
   const hotelBookRoomBtn = document.getElementById("hotelBookRoomBtn");
   const hotelCancelRoomBtn = document.getElementById("hotelCancelRoomBtn");
   const resortBookRoomBtn = document.getElementById("resortBookRoomBtn");
