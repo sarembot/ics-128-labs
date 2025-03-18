@@ -39,7 +39,7 @@
   </head>
   <body id="body">
     <!-- Navbar -->
-    <nav id="nav" class="navbar fixed-top navbar-expand-sm">
+    <nav id="nav" class="navbar fixed-top navbar-expand-md">
       <div class="container-fluid">
         <a class="navbar-brand" id="titleLink" href="index.html"
           >Hotel Saremba</a
@@ -77,9 +77,8 @@
               <a class="nav-link" href="lab06.html">Lab 6</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="lab07.html">Lab 6</a>
+              <a class="nav-link" href="lab07.html">Lab 7</a>
             </li>
-            </div>
           </ul>
         </div>
       </div>
@@ -87,7 +86,57 @@
 
     <!-- Block content -->
     <div id="block" class="container">
-      <div id="display" class="container"></div>
+      <div
+        id="display"
+        class="container w-100 d-flex justify-content-center align-items-center"
+      >
+        <div
+          id="loginPage"
+          class="container w-100 m-3 p-3 border border-2 border-secondary rounded"
+          style="width: 18rem"
+        >
+          <div class="card-head">
+            <h3 class="card-title text-center">Dynamic Quiz</h3>
+            <p class="card-text text-center border-bottom border-secondary">
+              Test your knowledge
+            </p>
+          </div>
+          <div class="card-body p-2">
+            <p class="">Enter your name below and click "begin" to start.</p>
+            <form
+              class="form-group mb-3 border border-secondary rounded border-2"
+            >
+              <div class="input-group">
+                <span class="input-group-text" id="basic-addon1">➡</span>
+                <input
+                  id="submitNameInput"
+                  type="text"
+                  class="form-control"
+                  aria-label="Name"
+                  aria-describedby="basic-addon1"
+                />
+                <button id="submitNameBtn" class="btn btn-secondary">
+                  Begin
+                </button>
+              </div>
+            </form>
+            <span id="errorSpan"></span>
+          </div>
+        </div>
+        <div class="container w-100 m-3 p-3" id="quizPage">
+          <div class="border-bottom border-dark">
+            <h2 class="text-center h2">Dynamic Quiz</h2>
+            <p class="text-center">Test your knowledge</p>
+            <!-- TIMER GOES HERE -->
+          </div>
+          <h4 id="welcomeMessage" class="h4">Hello, User</h4>
+          <div id="quizDisplay">
+            <ol>
+              <form id="quizList" class="form-group" action=""></form>
+            </ol>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- Footer -->
