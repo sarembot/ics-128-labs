@@ -88,7 +88,7 @@
     <div id="block" class="container">
       <div
         id="display"
-        class="container w-100 d-flex justify-content-center align-items-center"
+        class="container w-100 d-flex justify-content-center align-items-center p-0"
       >
         <div
           id="loginPage"
@@ -96,7 +96,7 @@
           style="width: 18rem"
         >
           <div class="card-head">
-            <h3 class="card-title text-center">Dynamic Quiz</h3>
+            <h3 class="card-title text-center">Random Quiz</h3>
             <p class="card-text text-center border-bottom border-secondary">
               Test your knowledge
             </p>
@@ -124,23 +124,84 @@
           </div>
         </div>
         <div class="container w-100 m-3 p-3" id="quizPage">
-          <div class="border-bottom border-dark">
-            <h2 class="text-center h2">Dynamic Quiz</h2>
-            <p class="text-center">Test your knowledge</p>
+          <div class="border border-secondary border-3 rounded-top">
+            <h2 class="text-center h2 mb-0">Random Quiz</h2>
+            <p class="text-center mb-1">Test your knowledge</p>
             <!-- TIMER GOES HERE -->
+            <div class="text-center w-100">
+              <span id="timer">00 : 00</span>
+            </div>
           </div>
-          <h4 id="welcomeMessage" class="h4">Hello, User</h4>
+          <h4
+            id="welcomeMessage"
+            class="h4 text-center border border-secondary border-3 rounded-bottom p-2"
+          ></h4>
+          <span id="finalScore"></span>
           <div id="quizDisplay">
-            <ol>
-              <form id="quizList" class="form-group" action=""></form>
+            <ol class="border border-3 border-secondary rounded">
+              <form id="quizList" class="form-group"></form>
             </ol>
+            <div class="d-flex justify-content-center mb-4">
+              <button
+                type="submit"
+                id="quizSubmitBtn"
+                class="btn btn-success"
+                form="quizList"
+                data-bs-toggle="submitModal"
+                data-bs-target="submitModal"
+              >
+                Submit
+              </button>
+            </div>
+          </div>
+
+          <!-- MODAL -->
+          <div
+            class="modal fade"
+            data-bs-backdrop="static"
+            id="submitModal"
+            tabindex="-1"
+            role="dialog"
+          >
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header d-flex justify-content-center">
+                  <h5 class="modal-title text-center">Final Score</h5>
+                </div>
+                <div
+                  class="modal-body d-flex flex-column align-items-center"
+                  style="height: 150px"
+                >
+                  <p class="fixed-height" id="perfectScoreNameResult"></p>
+                  <p class="fixed-height" id="scoreResult"></p>
+                  <p class="fixed-height" id="timeResult"></p>
+                </div>
+                <div class="modal-footer">
+                  <button
+                    id="tryAgainBtn"
+                    type="button"
+                    class="btn btn-primary"
+                  >
+                    Try again
+                  </button>
+                  <button
+                    id="logoutBtn"
+                    type="button"
+                    class="btn btn-secondary"
+                    data-dismiss="modal"
+                  >
+                    Logout
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
 
     <!-- Footer -->
-    <footer id="footer" class="">
+    <footer id="footer" class="fixed-bottom">
       <span>Mitchell Saremba Copyright 2025.</span>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>

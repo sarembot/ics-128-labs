@@ -16,6 +16,10 @@
   background-color: #ddd;
 }
 
+#display {
+  max-width: 800px;
+}
+
 #block {
   margin-top: 100px;
 }
@@ -51,4 +55,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.fixed-height {
+  min-height: 1.5em;
 }
